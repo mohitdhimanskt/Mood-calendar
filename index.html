@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="veiwport" content="width=device-width, initial-scale"> 
+    <title>
+        Mood calender
+    </title>
+    <script src="moment.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css" type="text/css" />
+
+    
+</head>
+
+<body>
+
+    <div id="container" class="calendar">  
+        <div class="mood_section">
+            <h2>2020 Mood Calendar</h2>
+            <h4>~ color each day depending on what your mood was / is ~</h4>
+            <p>Select mood:</p>
+            <div class="moods_container">
+                <button class="mood mood_1" id="mood_1"  @click="setColor('#2d6b5f')">
+                    <i class="fa fa-fw fa-laugh" aria-hidden="true"></i>
+                </button>
+                <button class="mood mood_2" id="mood_2"  @click="setColor('#72e3a6')">
+                    <i class="fa fa-smile"  ></i>
+                </button>   
+                <button class="mood mood_3" id="mood_3"  @click="setColor('#dff4c7')">
+                    <i class="far fa-meh"></i>
+                </button>
+                <button class="mood mood_4" id="mood_4"  @click="setColor('#edbf98')">
+                    <i class="far fa-frown" ></i>
+                </button>
+                <button class="mood mood_5" id="mood_5"  @click="setColor('#ea3d36')">
+                    <i class="far fa-sad-tear"></i>
+                </button>
+            </div>  
+            
+        </div>
+        <div v-for="month in months">
+            <div class="calendar-header">
+                
+                <h4>{{month.name + ' - ' + year}}</h4>
+                 
+            </div>
+            <ul class="weekdays">
+                <li v-for="day in days">{{day}}</li>
+            </ul>
+            <ul class="dates">
+                <li v-for="blank in getFirstDayOfMonth(month, year)">&nbsp;</li>
+                <li v-for="date in month.noOfDays" class="days_container" :key="date+month.name" @click="setMood">
+                    <span class="circle">{{date}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#container',
+            data: {
+                today: moment(),
+                dateContext: moment(),
+                days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                months: [
+                    {
+                        id: 1,
+                        name: 'January',
+                        noOfDays: 31
+                    },
+                    {
+                        id: 2,
+                        name: 'February',
+                        noOfDays: 29
+                    },
+                    {
+                        id: 3,
+                        name: 'March',
+                        noOfDays: 31
+                    },
+                    {
+                        id: 4,
+                        name: 'April',
+                        noOfDays: 30
+                    },
+                    {
+                        id: 5,
+                        name: 'May',
+                        noOfDays: 31
+                    },
+                    {
+                        id: 6,
+                        name: 'June',
+                        noOfDays: 30
+                    },
+                    {
+                        id: 7,
+                        name: 'July',
+                        noOfDays: 31
+                    },
+                    {
+                        id: 8,
+                        name: 'August',
+                        noOfDays: 31
+                    },
+                    {
+                        id: 9,
+                        name: 'September',
+                        noOfDays: 30
+                    },
+                    {
+                        id: 10,
+                        name: 'October',
+                        noOfDays: 31
+                    },
+                    {
+                        id:11,
+                        name: 'November',
+                        noOfDays: 30
+                    },
+                    {
+                        id: 12,
+                        name: 'December',
+                        noOfDays: 31
+                    }
+                ],
+                color: ['#2d6b5f', '#72ef4c7', '#dff4c7', '#edbf98', '#ea3d36'],
+                defaultColor: '#888',
+                activeColor: ''
+            },
+            computed: {
+                year: function () {
+                    var t = this;
+                    return t.dateContext.format('Y');
+                },
+                month: function () {
+                    var t = this;
+                    return t.dateContext.format('MMMM');
+                },
+                daysInMonth: function () {
+                    var t = this;
+                    return t.dateContext.daysInMonth();
+                },
+                currentDate: function () {
+                    var t = this;
+                    return t.dateContext.get('date');
+                },
+                firstDayOfMonth: function () {
+                    var t = this;
+                    var firstDay = moment(t.dateContext).subtract((t.currentDate - 1), 'days');
+                    return firstDay.weekday();
+                },
+                initialDate: function () {
+                    var t = this;
+                    return t.today.get('date');
+                },
+                initialMonth: function () {
+                    var t = this;
+                    return t.today.format('MMMM');
+                },
+                initialYear: function () {
+                    var t = this;
+                    return t.today.format('Y');
+                }
+            },
+            methods: {
+               
+                addMonth: function () {
+                    var t = this;
+                    t.dateContext = moment(t.dateContext).add(1, 'month');
+                },
+                subtractMonth: function () {
+                    var t = this;
+                    t.dateContext = moment(t.dateContext).subtract(1, 'month');
+                },
+                getFirstDayOfMonth(month, year) {
+                    let date = moment(`${month.id}/01/${year}`);
+                   
+                    return date.weekday();
+
+                },
+                setMood(event){
+                    let target = event.target;
+                    console.log(target, this.activeColor)
+                    target.style.backgroundColor = this.activeColor || this.defaultColor;
+                    console.log(target)
+                },
+                setColor(color){
+                    console.log(color)
+                    this.activeColor = color;
+                }
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,165 @@
+:root {
+	--mood-color-1: #2d6b5f;
+	--mood-color-2: #72e3a6;
+	--mood-color-3: #dff4c7;
+	--mood-color-4: #edbf98;
+	--mood-color-5: #ea3d36;
+}
+
+
+body{
+    font-family: 'Muli';
+    margin: 40px 0;
+}
+h4{
+    display: flex;
+    flex-wrap: wrap;
+margin-left: 100px;
+}
+li{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 14px;
+    margin-bottom: 5px;
+    height: calc(100% / 7);
+    width: calc(88% / 7);
+    text-align: center;
+    
+
+}
+
+
+ ul{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 14px;
+    margin-bottom: 5px;
+    height: calc(100% / 7);
+    width: 265px;
+    text-align: center;
+
+}
+.container {
+	max-width: 500px;
+	margin: 0 auto;
+	padding: 0 30px;
+	text-align: center;
+}
+
+.moods_container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.mood {
+	background-color: #fff;
+	border: 0;
+	border-radius: 50%;
+	color: #000;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 30px;
+	line-height: 20px;
+	padding: 0;
+	margin: 0 5px;
+	height: 40px;
+	width: 40px;
+	text-align: center;
+}
+
+.mood_1 {
+	color: var(--mood-color-1);
+}
+
+.mood_2 {
+	color: var(--mood-color-2);
+}
+
+.mood_3 {
+	color: var(--mood-color-3);
+}
+
+.mood_4 {
+	color: var(--mood-color-4);
+}
+
+.mood_5 {
+	color: var(--mood-color-5);
+}
+
+.mood.selected {
+	background-color: currentColor;
+}
+
+.mood.selected i {
+	color: #fff;
+}
+
+.mood:active {
+	transform: scale(0.9);
+}
+
+.mood:focus {
+	outline: 0;
+}
+
+.mood i {
+	cursor: pointer;
+}
+
+.calendar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    border-style: groove;
+    border-color: coral;
+    border-width: 30px;
+    position: absolute;
+} 
+h2{
+    margin-bottom: 0;
+    text-align: center;
+}
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+.mood_section{
+    text-align: center;
+    margin-left: 575px;
+    margin-right: 600px;
+}
+
+.circle {
+  cursor: pointer;
+    background-color: #888;
+	 border-radius: 50%;
+	 color: #fff; 
+     display: inline-flex;
+	justify-content: center;
+	align-items: center; 
+	font-size: 10px;
+	width: 20px;
+    height: 20px;    
+
+}
+.test{
+    background-color: lightcoral;
+}
+
+
+ .circle:hover {
+	transform: scale(1.1);
+}
+
+.mood_section h4{
+    margin-left: 0px;
+} 
